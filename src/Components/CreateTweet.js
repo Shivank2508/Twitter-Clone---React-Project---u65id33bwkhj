@@ -17,6 +17,7 @@ const CreateTweet = () => {
 
         let temp = JSON.parse(localStorage.getItem('tweets')) || [];
         localStorage.setItem("tweets", JSON.stringify([...temp, createTweetState]))
+        window.location.reload();
     }
     useEffect(() => {
         console.log(createTweetState);
