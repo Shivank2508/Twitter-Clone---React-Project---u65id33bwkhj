@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     FaRegImage,
     FaRegListAlt,
@@ -6,6 +6,21 @@ import {
     FaCalendarCheck,
 } from "react-icons/fa";
 const CreateTweet = () => {
+    const [createTweetState, setCreateTweetState] = useState('')
+
+
+    function handleInput(e) {
+        setCreateTweetState(e.target.value)
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        let temp = JSON.parse(localStorage.getItem('tweets')) || [];
+        localStorage.setItem("tweets", JSON.stringify([...temp, createTweetState]))
+    }
+    useEffect(() => {
+        console.log(createTweetState);
+    })
     return (
         <div className="create">
             <div className="create__first">
@@ -17,6 +32,7 @@ const CreateTweet = () => {
                         type="text"
                         className="create__control"
                         placeholder="What's happing?"
+                        onChange={handleInput}
                     />
                 </div>
             </div>
@@ -27,7 +43,7 @@ const CreateTweet = () => {
                     <FaRegSmile className="ic" />
                     <FaCalendarCheck className="ic" />
                 </div>
-                <div className="create__btn">
+                <div className="create__btn" onClick={handleSubmit}>
                     <a href="">Tweet</a>
                 </div>
             </div>
