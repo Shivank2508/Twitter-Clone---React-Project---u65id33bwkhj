@@ -27,8 +27,12 @@ const Login = () => {
             const loggedUser = JSON.parse(localStorage.getItem("users"))
             for (let i = 0; i < loggedUser.length; i++) {
                 if (loggedUser[i].email === signupstate.email && loggedUser[i].password === signupstate.password) {
+                    navigate('/Home')
+                }
+                if (loggedUser[i].email !== signupstate.email && loggedUser[i].password !== signupstate.password) {
                     navigate('/')
                 }
+
             }
         }
     }
